@@ -37,64 +37,83 @@ const styles = (theme) => ({
     },
     elementText: {
         flex: "none",
-        paddingLeft: theme.spacing.unit / 2,
+        paddingLeft: theme.spacing(1 / 2),
         color: "#666666"
     },
     elementIcon: {
         fontSize: 20,
-        marginLeft: theme.spacing.unit * 2,
+        marginLeft: theme.spacing(2),
         color: "#666666"
     },
     svgElementIcon: {
         fontSize: 16,
-        marginLeft: theme.spacing.unit * 2,
+        marginLeft: theme.spacing(2),
         color: "#666666"
     }
 });
 
-const OrgList = (props) => {
-    const {classes, data} = props;
+class OrgList extends React.Component {
 
-    return (
-        <React.Fragment>
-            <List component="nav">
-                {data.map((image) => (
-                    <div key={image.name}>
-                        <ListItem button>
-                            <ListItemAvatar>
-                                <Avatar className={classes.avatar}>
-                                    <ImageIcon/>
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText primary={image.name}
-                                secondary={image.description}/>
-                            <People className={classes.elementIcon}/>
-                            <Typography variant="subheading2" color="inherit" className={classes.elementText}>
-                                {image.members}
-                            </Typography>
-                            <CellImage size="small" className={classes.svgElementIcon}/>
-                            <Typography variant="subheading2" color="inherit" className={classes.elementText}>
-                                {image.images}
-                            </Typography>
-                        </ListItem>
-                        <Divider/>
-                    </div>
-                ))}
-            </List>
-            <TablePagination
-                component="nav"
-                page={0}
-                rowsPerPage={10}
-                count={data.length}
-            />
-        </React.Fragment>
-    );
-};
+    constructor(props) {
+        super(props);
+        this.state = {
+            setPage: 0
+        };
+    }
+
+    handleChangePage = (event, newValue) => {
+        // TODO: Load and set new data
+        this.setState({
+            setPage: newValue
+        });
+    };
+
+    render = () => {
+        const {classes, data} = this.props;
+        const {setPage} = this.state;
+
+        return (
+            <React.Fragment>
+                <List component="nav">
+                    {data.map((image) => (
+                        <div key={image.name}>
+                            <ListItem button>
+                                <ListItemAvatar>
+                                    <Avatar className={classes.avatar}>
+                                        <ImageIcon/>
+                                    </Avatar>
+                                </ListItemAvatar>
+                                <ListItemText primary={image.name}
+                                    secondary={image.description}/>
+                                <People className={classes.elementIcon}/>
+                                <Typography variant="subtitle2" color="inherit" className={classes.elementText}>
+                                    {image.members}
+                                </Typography>
+                                <CellImage size="small" className={classes.svgElementIcon}/>
+                                <Typography variant="subtitle2" color="inherit" className={classes.elementText}>
+                                    {image.images}
+                                </Typography>
+                            </ListItem>
+                            <Divider/>
+                        </div>
+                    ))}
+                </List>
+                <TablePagination
+                    component="nav"
+                    page={setPage}
+                    rowsPerPage={10}
+                    count={data.length}
+                    onChangePage={this.handleChangePage}
+                />
+            </React.Fragment>
+        );
+    }
+
+}
 
 OrgList.propTypes = {
     classes: PropTypes.object.isRequired,
-    data: PropTypes.object.isRequired
+    data: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default withStyles(styles)(OrgList);
-

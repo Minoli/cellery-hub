@@ -33,11 +33,11 @@ import * as PropTypes from "prop-types";
 
 const styles = (theme) => ({
     content: {
-        paddingTop: theme.spacing.unit * 4
+        paddingTop: theme.spacing(4)
     },
     container: {
-        paddingTop: theme.spacing.unit * 4,
-        paddingBottom: theme.spacing.unit * 4
+        paddingTop: theme.spacing(4),
+        paddingBottom: theme.spacing(4)
     },
     formControl: {
         minWidth: "100%"
@@ -100,7 +100,7 @@ class MyOrgs extends React.Component {
                                 />
                             </FormControl>
                         </Grid>
-                        <Grid item xs={0} sm={4} md={4}>
+                        <Grid item sm={4} md={4}>
                         </Grid>
                         <Grid item xs={12} sm={4} md={4} >
                             <Grid container alignItems="baseline" justify="flex-end" direction="row">

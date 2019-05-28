@@ -34,45 +34,51 @@ import * as PropTypes from "prop-types";
 
 const styles = (theme) => ({
     content: {
-        paddingTop: theme.spacing.unit * 4
+        paddingTop: theme.spacing(4)
     },
     container: {
-        paddingTop: theme.spacing.unit * 4,
-        paddingBottom: theme.spacing.unit * 4
+        paddingTop: theme.spacing(4),
+        paddingBottom: theme.spacing(4)
     },
     formControl: {
         minWidth: "100%"
     },
     orgSelect: {
-        marginRight: 10
+        marginRight: theme.spacing(1)
     }
 });
 
 const data = [
     {
         name: "pet-fe",
-        description: "This contains the four components which involves with working with the Pet Store data and"
+        summary: "This contains the four components which involves with working with the Pet Store data and"
         + " business logic.",
         organization: "alpha",
         public: true,
         pulls: 10,
-        stars: 3
+        stars: 3,
+        lastUpdated: "2 days",
+        lastUpdatedBy: "john"
     },
     {
         name: "pet-be",
-        description: "This contains of a single component which serves the portal.",
+        summary: "This contains of a single component which serves the portal.",
         organization: "alpha",
         public: true,
         pulls: 15,
-        stars: 11
+        stars: 11,
+        lastUpdated: "20 hours",
+        lastUpdatedBy: "john"
     },
     {
         name: "hello-world",
-        description: "Sample hello world cell.",
+        summary: "Sample hello world cell.",
         organization: "beta",
         public: false,
         pulls: 7,
-        stars: 4
+        stars: 4,
+        lastUpdated: "5 days",
+        lastUpdatedBy: "john"
     }
 ];
 
@@ -157,7 +163,7 @@ class MyImages extends React.Component {
                                 />
                             </FormControl>
                         </Grid>
-                        <Grid item xs={0} sm={2} md={2}>
+                        <Grid item sm={2} md={2}>
                         </Grid>
                         <Grid item xs={12} sm={3} md={3}>
                             <form autoComplete="off">
